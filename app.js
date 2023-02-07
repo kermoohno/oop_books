@@ -3,36 +3,30 @@ const ui = new UI()
 const ls = new LS()
 
 // user input form
-const form = document.querySelector('#book-form')
-form.addEventListener('submit', addBook)
+const form = document.querySelector('#form')
+if (form) {
+    form.addEventListener('submit', addBook)
+}
 
 // page reload
 document.addEventListener('DOMContentLoaded', getBooks)
 
 // books table click event
 const bookList = document.querySelector('#book-list')
-bookList.addEventListener('click', delBook)
+if (bookList) {
+    bookList.addEventListener('click', delBook)
+}
 
 // book filter keyboard event
 const filter = document.querySelector("#filter")
-filter.addEventListener('keyup', filterBook)
+if (filter) {
+    filter.addEventListener('keyup', filterBook)
+}
 
 function filterBook(event){
     let filter = event.target.value.toLowerCase()
     ui.filterData(filter)
 }
-
-function delBook(event){
-    if(event.target.textContent === 'X'){
-        const book = ui.getBook(event.target)
-        if(ui.delBook(event.target) === true){
-            ls.delBook(book)
-        }
-    }
-}
-
-
-
 function getBooks(){
     // get data from LS
     const books = ls.getData('books')
@@ -61,3 +55,13 @@ function addBook(event){
     ui.isbn.value = ''
     event.preventDefault()
 }
+
+function delBook(event){
+    if(event.target.textContent === 'X'){
+        const book = ui.getBook(event.target)
+        if(ui.delBook(event.target) === true){
+            ls.delBook(book)
+        }
+    }
+}
+

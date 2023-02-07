@@ -1,19 +1,20 @@
-class UI {
-    constructor() {
+class UI{
+    constructor(){
         this.title = document.querySelector('#title')
         this.author = document.querySelector('#author')
         this.isbn = document.querySelector('#isbn')
-        this.bookList = document.querySelector('#book-list')
+        this.list = document.querySelector('#book-list')
     }
     addBook(book){
         const tr = document.createElement('tr')
         tr.setAttribute('class', 'book-row')
         tr.innerHTML = `<td>${book.title}</td>
-                <td>${book.author}</td>
-                <td>${book.isbn}</td>
-                <td><a href="#">X</a></td>`
-        this.bookList.appendChild(tr)
+            <td>${book.author}</td>
+            <td>${book.isbn}</td>
+            <td><a href="#">X</a></td>`
+        this.list.appendChild(tr)
     }
+
 
     getBook(click){
         let isbn = click.parentElement.previousElementSibling.textContent
@@ -24,7 +25,7 @@ class UI {
     }
 
     delBook(click){
-        if(confirm('Do you realy want to delete this book?')) {
+        if(confirm('Do you really want to delete this book?')) {
             click.parentElement.parentElement.remove()
             return true
         } else {
